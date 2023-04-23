@@ -152,7 +152,7 @@
 				6B49D07929F538B1003D1C34 /* View */,
 			);
 			name = Profile;
-			path = Profile/Profile;
+			path = Helpers/Profile;
 			sourceTree = "<group>";
 		};
 		6B4E024729B49760009F6FBC = {
