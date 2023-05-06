@@ -16,7 +16,7 @@ enum AppFactory {
         
         
         let homeNC = HomeFactory.getViewController()
-        let likedNC = UINavigationController(rootViewController: LikedViewController())
+        let likedNC = LikedFactory.getNavigationController()
         let profileNC = UINavigationController(rootViewController: AuthViewController())
        
         

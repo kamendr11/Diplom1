@@ -3,6 +3,8 @@ import UIKit
 
 class ApartametsDetailsView: UIView {
     
+    var likeAction: (() -> ())?
+    
     private lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +50,7 @@ class ApartametsDetailsView: UIView {
         likedB.translatesAutoresizingMaskIntoConstraints = false
         likedB.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
         likedB.tintColor = .black
+        likedB.addTarget(self, action: #selector(like), for: .touchUpInside)
         return likedB
     }()
     
@@ -82,6 +85,21 @@ class ApartametsDetailsView: UIView {
     func setScrollContentSize() {
         scrollView.contentSize = CGSize(width: contentView.bounds.width, height: contentView.bounds.height)
         print("test contentView.bounds.height = \(contentView.bounds.height) bounds.height = \(bounds.height)")
+    }
+    
+    @objc func like() {
+        likeAction?()
+        
+    }
+    
+    func setModel(model: ApartmentModel) {
+        imageView.image = UIImage(named: model.imageNames.first!)
+        nameLabel.text = model.shortDescription
+        coastLabel.text = "\(model.price)"
+        textLabel.text = model.fullDescription
+        phoneLabel.text = model.phoneNumber
+        
+        (model.isLiked) ? likedB.setBackgroundImage(.Home.heartFill, for: .normal) : likedB.setBackgroundImage(.Home.heart, for: .normal)
     }
     
     private func setupView() {

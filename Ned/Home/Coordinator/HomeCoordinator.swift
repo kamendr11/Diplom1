@@ -20,9 +20,8 @@ final class HomeCoordinator {
     }
     
     fileprivate func showFullDescriptionViewController(apartament: ApartmentModel) {
-        print(apartament .id)
-//        let coordinator = FullDescriptionApartamentCoordinator(navigationController: navigationController, apartament: apartament)
-//        coordinator.show()
+        let coordinator = DetailsCoordinator(navigationController: navigationController, apartment: apartament)
+        coordinator.show()
     }
 }
 

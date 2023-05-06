@@ -2,6 +2,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+
     private let mainView: HomeView
     
     private var viewModel: HomeViewModelProtocol?
@@ -25,6 +26,12 @@ class HomeViewController: UIViewController {
         title = "Под крышей"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.updateModel(state: .initial)
+    }
+    
+    
     @objc func searchButtonClicked() {
         viewModel?.goToSearchViewController()
 //        let vc = SeachViewController(mainView: SearchView())
@@ -33,6 +40,7 @@ class HomeViewController: UIViewController {
     
     func setViewModel(viewModel: HomeViewModelProtocol) {
             self.viewModel = viewModel
+        mainView.likeAction = viewModel.addLikedApartament(model:)
         mainView.didSelectApartament = { apartment in
             viewModel.showMoreDetails(model: apartment)
         }

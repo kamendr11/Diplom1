@@ -5,6 +5,8 @@ class ApartamentDetailsViewController: UIViewController {
     
     private let mainView: ApartametsDetailsView
     
+    private var viewModel: DetailsViewModel?
+    
 
     
     init(mainView: ApartametsDetailsView) {
@@ -31,6 +33,14 @@ class ApartamentDetailsViewController: UIViewController {
 //    override func () {
 //        super.viewWillLayoutSubviews()
 //        mainView.setScrollContentSize()
+    func setViewModel(viewModel: DetailsViewModel) {
+        self.viewModel = viewModel
+        mainView.likeAction = viewModel.like
+        viewModel.updateView = mainView.setModel(model:)
+        viewModel.update()
+      
+    }
+    
     
 
 }

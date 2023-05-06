@@ -41,6 +41,7 @@ class FirebaseService {
     private init() {}
 
     func downloadApartments(handler: @escaping (Result<[ApartmentModel], FirebaseError>) -> ()) {
+        apartments = []
         db.collection(collection).getDocuments() { (querySnapshot, error) in
             if let error = error {
                 handler(.failure(.getDocumentsError(error.localizedDescription)))
@@ -64,12 +65,14 @@ class FirebaseService {
                 self.documents[id] = document.documentID
                 self.apartments.append(model)
             }
+            print(self.apartments.count)
             handler(.success(self.apartments))
         }
     }
 
     func getApartments() -> [ApartmentModel] {
-        apartments
+        
+        return apartments
     }
 
     func getFavoriteApartments() -> [ApartmentModel] {
@@ -78,8 +81,8 @@ class FirebaseService {
         }
     }
 
-    func updateApartment(_ apartment: ApartmentModel) {
-        guard let id = documents[apartment.id] else { return }
+    func updateApartment(_ apartment: ApartmentModel) -> ApartmentModel {
+        guard let id = documents[apartment.id] else { return apartment}
         let ref = db.collection(collection).document(id)
         let update = [ApartmentField.isLiked.rawValue : !apartment.isLiked]
         ref.updateData(update)
@@ -88,7 +91,9 @@ class FirebaseService {
             apartmentModel == apartment
         }) {
             apartments[index].isLiked = !apartments[index].isLiked
+            return apartments[index]
         }
+        return apartment
     }
 
     func downloadImage(from urlString: String, handler: @escaping ((UIImage?) -> ())) {

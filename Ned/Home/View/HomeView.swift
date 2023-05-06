@@ -2,6 +2,8 @@ import UIKit
 
 class HomeView: UIView {
     
+    var likeAction: ((ApartmentModel)->())?
+    
     var didSelectApartament: ((_ apartment: ApartmentModel) -> ())?
     
     private var apartments: [ApartmentModel] = []
@@ -74,7 +76,7 @@ extension HomeView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ApartametCell", for: indexPath) as? ApartamentCell else {
             return UICollectionViewCell()
         }
-        
+        cell.likeAction = likeAction
         cell.addData(data: apartments[indexPath.row])
         return cell
     }
