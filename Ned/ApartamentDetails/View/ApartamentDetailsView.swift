@@ -5,6 +5,14 @@ class ApartametsDetailsView: UIView {
     
     var likeAction: (() -> ())?
     
+    
+    private lazy var formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     private lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +108,7 @@ class ApartametsDetailsView: UIView {
         phoneLabel.text = model.phoneNumber
         
         (model.isLiked) ? likedB.setBackgroundImage(.Home.heartFill, for: .normal) : likedB.setBackgroundImage(.Home.heart, for: .normal)
+        coastLabel.text = (formatter.string(from: NSNumber(value: model.price)) ?? "") + " ₽"
     }
     
     private func setupView() {

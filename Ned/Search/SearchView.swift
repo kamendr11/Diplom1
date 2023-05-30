@@ -199,6 +199,7 @@ class SearchView: UIView {
         fourRoomButton.reset()
         fiveRoomButton.reset()
         resetAction?()
+        roomsSelected = []
         
     }
 }

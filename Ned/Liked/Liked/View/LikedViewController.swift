@@ -24,6 +24,8 @@ class LikedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        title = "Избранное"
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,6 +35,7 @@ class LikedViewController: UIViewController {
     func setUpViewModel(viewModel: LikedViewModel) {
         self.viewModel = viewModel
         mainView.likeAction = viewModel.removeFromFavorite(apartment:)
+        mainView.didSelectApartament = viewModel.didSelectApartment(apartment:)
         self.viewModel?.updateView = { data, scrollToTop in
             self.mainView.updateCollectionView(data: data)
             

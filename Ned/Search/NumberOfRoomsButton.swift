@@ -47,5 +47,6 @@ final class NumberOfRoomsButton: UIButton {
     private func buttonWasUnselectedAction() {
         backgroundColor = nil
         layer.borderWidth = 1.5
+        buttonWasSelected = false
     }
 }

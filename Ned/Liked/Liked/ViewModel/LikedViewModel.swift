@@ -10,7 +10,7 @@ enum LikedViewModelState {
 final class LikedViewModel {
     var updateView: (([ApartmentModel],  _ scrollToTop: Bool) -> ())?
     
-   
+    var output: LikedOutput?
 
     func updateModel(state: LikedViewModelState) {
         let favoriteApartments = FirebaseService.shared.getFavoriteApartments()
@@ -30,4 +30,7 @@ final class LikedViewModel {
         _ = FirebaseService.shared.updateApartment(apartment)
         updateModel(state: .removeFromFavorite)
     }
+    func didSelectApartment(apartment: ApartmentModel) {
+            output?.apartamentSelected(apartament: apartment)
+        }
 }

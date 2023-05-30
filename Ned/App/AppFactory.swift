@@ -1,10 +1,3 @@
-//
-//  AppFactory.swift
-//  Ned
-//
-//  Created by Игорь Камендровский on 05.03.2023.
-//
-
 import UIKit
 
 enum AppFactory {
@@ -16,8 +9,8 @@ enum AppFactory {
         
         
         let homeNC = HomeFactory.getViewController()
-        let likedNC = LikedFactory.getNavigationController()
-        let profileNC = UINavigationController(rootViewController: AuthViewController())
+        let likedNC = LikedCoordinator().getNavigationController()
+        let profileNC = AuthFactory.getNavigationController()
        
         
         homeNC.tabBarItem = homeItem

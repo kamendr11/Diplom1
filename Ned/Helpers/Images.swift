@@ -10,6 +10,7 @@ import UIKit
 extension UIImage {
     enum TabBar {
         static let house = UIImage(systemName: "house")
+//        static let house = UIImage(named: "logo")
         static let heart = UIImage(systemName: "heart.fill")
         static let person = UIImage(systemName: "person")
         static let map = UIImage(systemName: "map")
